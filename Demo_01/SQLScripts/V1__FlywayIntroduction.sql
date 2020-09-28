@@ -1,0 +1,3 @@
+CREATE TABLE LeTest (
+	LeColumn VARCHAR(128) NOT NULL
+);
