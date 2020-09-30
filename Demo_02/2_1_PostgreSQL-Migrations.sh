@@ -1,4 +1,4 @@
-# Demo 02 - PostgreSQL Migration - New database
+# Demo 02 - PostgreSQL Migrations
 # 
 #   1- Create PostgreSQL container with worldregions database
 #   2- Connect to PostgreSQL using psql (within Docker)
@@ -20,9 +20,10 @@
 # PostgreSQL:       jdbc:postgresql://<host>:<port>/<database>?<key1>=<value1>&<key2>=<value2>
 
 # 0- Env variables | demo path
-cd ~/Documents/Migraciones-Flyway/Demo_02;
-SQLScripts=~/Documents/Migraciones-Flyway/Demo_02/SQLScripts;
-ConfigFile=~/Documents/Migraciones-Flyway/Demo_02/ConfigFile;
+cd ~/Documents/Coecys-Migraciones-Flyway/Demo_02;
+SQLScripts=~/Documents/Coecys-Migraciones-Flyway/Demo_02/SQLScripts;
+ConfigFile=~/Documents/Coecys-Migraciones-Flyway/Demo_02/ConfigFile;
+
 # dkrm PostgreSQL-Demo;
 # docker volume rm vlm_PG-Data;
 # mv ./SQLScripts/V2__LoadData.sql ./SQLScripts/--V2__LoadData.sql;
@@ -72,18 +73,21 @@ code ./SQLScripts/V1__CreateStructures.sql;
 docker container run --rm \
     --volume $SQLScripts:/flyway/sql \
     --volume $ConfigFile:/flyway/conf \
+    --network host \
     flyway/flyway info
 
 # Perform V1 migration
 docker container run --rm \
     --volume $SQLScripts:/flyway/sql \
     --volume $ConfigFile:/flyway/conf \
+    --network host \
     flyway/flyway migrate
 
 # Check status
 docker container run --rm \
     --volume $SQLScripts:/flyway/sql \
     --volume $ConfigFile:/flyway/conf \
+    --network host \
     flyway/flyway info
 
 # 6- Flyway migration V2
@@ -103,12 +107,14 @@ Demo_02
 docker container run --rm \
     --volume $SQLScripts:/flyway/sql \
     --volume $ConfigFile:/flyway/conf \
+    --network host \
     flyway/flyway info
 
 # Perform V1 migration
 docker container run --rm \
     --volume $SQLScripts:/flyway/sql \
     --volume $ConfigFile:/flyway/conf \
+    --network host \
     flyway/flyway migrate
 
 # --------------------------------------
@@ -120,6 +126,7 @@ docker container run --rm \
 docker container run --rm \
     --volume $SQLScripts:/flyway/sql \
     --volume $ConfigFile:/flyway/conf \
+    --network host \
     flyway/flyway clean
 
 # --------------------------------------

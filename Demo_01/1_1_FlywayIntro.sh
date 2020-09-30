@@ -12,9 +12,9 @@
 #   open https://hub.docker.com/r/flyway/flyway
 
 # 0- Env variables | demo path
-cd ~/Documents/Migraciones-Flyway/Demo_01;
-SQLScripts=~/Documents/Migraciones-Flyway/Demo_01/SQLScripts;
-ConfigFile=~/Documents/Migraciones-Flyway/Demo_01/ConfigFile;
+cd ~/Documents/Coecys-Migraciones-Flyway/Demo_01;
+SQLScripts=~/Documents/Coecys-Migraciones-Flyway/Demo_01/SQLScripts;
+ConfigFile=~/Documents/Coecys-Migraciones-Flyway/Demo_01/ConfigFile;
 
 # 1- Downloading Flyway command-line tool
 # macOS 
@@ -40,28 +40,47 @@ docker container run --rm flyway/flyway
 
 # 3- Flyway info
 # Local command-line
-flyway info -url=jdbc:h2:mem:FlyWay-Test -user=sa -password=s3cr3t
+flyway info \
+    -url=jdbc:h2:mem:FlyWay-Test \
+    -user=sa -password=s3cr3t
 
 # Docker container
-docker container run --rm flyway/flyway -url=jdbc:h2:mem:FlyWay-Test -user=sa info
+docker container run --rm flyway/flyway \
+    -url=jdbc:h2:mem:FlyWay-Test \
+    -user=sa -password=s3cr3t \
+    info
 
 # 4- Flyway migrate
+# Folder structure
+Demo_01
+└── SQLScripts
+    └── V1__FlywayIntro.sql
+
+# Dummy SQL script
+code $SQLScripts/V1__FlywayIntro.sql
+
+# Local command-line
+flyway migrate \
+    -url=jdbc:h2:mem:FlyWay-Test \
+    -user=sa -password=s3cr3t  \
+    -locations=filesystem:$SQLScripts
+
+# Docker container
+docker container run --rm \
+    --volume $SQLScripts:/flyway/sql \
+    flyway/flyway \
+    -url=jdbc:h2:mem:FlyWay-Test \
+    -user=sa -password=s3cr3t \
+    migrate
+
+# 5- Flyway migrate + configuration file
 # Folder structure
 Demo_01
 ├── ConfigFile
 │   └── flyway.conf
 └── SQLScripts
-    └── V1__FlywayIntroduction.sql
+    └── V1__FlywayIntro.sql
 
-# Dummy SQL script
-code $SQLScripts/V1__FlywayIntroduction.sql
-
-# Database migration (dummy)
-docker container run --rm \
-    --volume $SQLScripts:/flyway/sql \
-    flyway/flyway -url=jdbc:h2:mem:FlyWay-Test -user=sa migrate
-
-# 5- Flyway migrate + configuration file
 # Explore Configuration file reference
 code ./flyway.conf
 
@@ -69,7 +88,8 @@ code ./flyway.conf
 # Creating a conf file
 code $ConfigFile/flyway.conf
 
-# Testing configuration file
+# Using configuration file
+# Docker container
 docker container run --rm \
     --volume $SQLScripts:/flyway/sql \
     --volume $ConfigFile:/flyway/conf \
