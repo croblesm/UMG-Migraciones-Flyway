@@ -15,3 +15,13 @@ SELECT * FROM countries;
     FROM 
         countries a 
         INNER JOIN regions b ON a.region_id = b.region_id;
+
+-- Checking flyway schema history
+SELECT 
+    version,
+    description,
+    type,
+    script,
+    installed_by,
+    success
+FROM flyway_schema_history
