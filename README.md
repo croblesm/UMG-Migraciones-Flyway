@@ -1,5 +1,5 @@
 # UMG 2020 - Tech day
-## [Migraciones de bases de datos con Flyway](https://coecys.org.gt/session/migraciones-db-Flyway)
+## Migraciones de bases de datos con Flyway
 
 En su gran mayoría, los proyectos de software hoy en día aún dependen de procesos manuales para la implementación de cambios en bases de datos. Muchos de ellos no llegar a ser documentados debidamente, existiendo una diferencia de versión entre ambientes de producción, desarrollo y pruebas.
 
