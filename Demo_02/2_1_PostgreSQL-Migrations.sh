@@ -20,9 +20,9 @@
 # PostgreSQL:       jdbc:postgresql://<host>:<port>/<database>?<key1>=<value1>&<key2>=<value2>
 
 # 0- Env variables | demo path
-cd ~/Documents/Coecys-Migraciones-Flyway/Demo_02;
-SQLScripts=~/Documents/Coecys-Migraciones-Flyway/Demo_02/SQLScripts;
-ConfigFile=~/Documents/Coecys-Migraciones-Flyway/Demo_02/ConfigFile;
+cd ~/Documents/UMG-Migraciones-Flyway/Demo_02;
+SQLScripts=~/Documents/UMG-Migraciones-Flyway/Demo_02/SQLScripts;
+ConfigFile=~/Documents/UMG-Migraciones-Flyway/Demo_02/ConfigFile;
 
 # dkrm PostgreSQL-Demo;
 # docker volume rm vlm_PG-Data;

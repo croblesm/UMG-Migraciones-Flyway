@@ -12,9 +12,9 @@
 #   open https://hub.docker.com/r/flyway/flyway
 
 # 0- Env variables | demo path
-cd ~/Documents/Coecys-Migraciones-Flyway/Demo_01;
-SQLScripts=~/Documents/Coecys-Migraciones-Flyway/Demo_01/SQLScripts;
-ConfigFile=~/Documents/Coecys-Migraciones-Flyway/Demo_01/ConfigFile;
+cd ~/Documents/UMG-Migraciones-Flyway/Demo_01;
+SQLScripts=~/Documents/UMG-Migraciones-Flyway/Demo_01/SQLScripts;
+ConfigFile=~/Documents/UMG-Migraciones-Flyway/Demo_01/ConfigFile;
 
 # 1- Downloading Flyway command-line tool
 # macOS 
